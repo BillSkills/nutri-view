@@ -142,11 +142,13 @@
             <div class="grid grid-cols-3 gap-4 h-full">
               <div
                 class="bg-red-500 overflow-hidden col-span-1 border-solid rounded-lg border-blue-800 dark:border-gray-600 h-full">
-                <img id="imagePreview" src="" alt="Image Preview">
+                {% if uploaded_image %}
+                <img src="{{item[3]}}" alt="Uploaded Image">
+                {% endif %}
               </div>
               <div class=" col-span-2 border-solid rounded-lg border-blue-800 dark:border-gray-600 h-full mb-4">
                 <p class="text-white text-2xl">{{item[1]}}<br>{{item[2]}}</p>
-                <p class="text-white text-md">{{item[3]}}</p>
+                <p class="text-white text-md">{{item[4]}}</p>
               </div>
             </div>
           </div>
