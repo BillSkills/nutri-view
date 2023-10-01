@@ -38,7 +38,7 @@ def getindexofmaxofnparray(x):
     
     class_list = [i.split(" ")[1] for i in class_list]
 
-    print(class_list)
+    # print(class_list)
 
     return class_list[np.where(x == np.amax(x))[0][0]]
 

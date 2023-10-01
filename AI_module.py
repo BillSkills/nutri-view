@@ -43,6 +43,6 @@ if __name__ == "__main__":
     # """
     pred = prediction(m, img_prep)
 
-    print(pred)
-    print(type(pred))
+    # print(pred)
+    # print(type(pred))
     # """

@@ -9,7 +9,7 @@ from pathlib import Path
 from PIL import Image
 import time as time
 
-openai.api_key = "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"
+openai.api_key = "API_KEY_HERE"
 
 df = pd.read_csv('cleaned_data1.csv')
 app=Flask(__name__)
@@ -17,8 +17,7 @@ app=Flask(__name__)
 UPLOAD_FOLDER = Path('static')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-info=[[0,"banana", "tuesday 12 2023", "/static/0.png",1,2,3,4,5]]
-info.reverse()
+info=[[0,"Pancakes", "Saturday Sep 30, 2023", "/static/0.jpg",250,8,8,37,7], [1,"Banana", "Friday Sep 29, 2023", "/static/1.jpg",110,0,1,28,15], [2,"Pizza", "Thursday Sep 28, 2023", "/static/2.jpg",285,10.4,12.2,35.7,3.8]]
 button_clicked = 0
 
 @app.route('/', methods=["GET","POST"])
@@ -42,7 +41,7 @@ def index():
 def upload():
     if 'image' in request.files:
         image = request.files['image']
-        print(image)
+        # print(image)
 
         # Do something with the uploaded image, e.g., save it or process it
         # return "uploaded"
@@ -77,13 +76,15 @@ def upload():
             new_list.pop(len(new_list) - 1)
             new_list.insert(0, len(info))
             #append date to list in position 3 (index 2)
-            new_list.insert(2, time.strftime("%a %d %b %Y"))
+            new_list.insert(2, time.strftime("%A %b %d, %Y"))
             #append filename to list in position 4 (index 3)
             new_list.insert(3, filename)
             # info.insert(0,[len(info),"grapes","saturday 12 2023",filename,1,2,3,4,5])
-            print(new_list)
+            info.reverse()
             info.append(new_list)
         return render_template('index.html', info=info, selected_item=info[button_clicked])
+    else:
+        return 'No image file uploaded'
     
 if __name__ == '__main__':
     app.run(debug=True)
