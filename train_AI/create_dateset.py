@@ -92,16 +92,11 @@ if __name__ == "__main__":
     p_train = Path("D:/dataset/MAIS_hackaton/food_images_251/pytorch_dataset_256/train")
     p_test = Path("D:/dataset/MAIS_hackaton/food_images_251/pytorch_dataset_256/test")
 
-    # test_annot = pd.read_csv("D:/dataset/MAIS_hackaton/food_images_251/annot/test_info.csv")
     train_annot = pd.read_csv("D:/dataset/MAIS_hackaton/food_images_251/annot/train_info.csv")
     valid_annot = pd.read_csv("D:/dataset/MAIS_hackaton/food_images_251/annot/val_info.csv")
 
     all_annot = pd.concat([train_annot, valid_annot]).set_index("names")
-    print(all_annot)
-    print(all_annot.index)
-    print(all_annot.loc["train_101735.jpg"].number)
-
-    """
+    
     p1 = Path("D:/dataset/MAIS_hackaton/food_images_251/train_set")
     p2 = Path("D:/dataset/MAIS_hackaton/food_images_251/test_set")
     p3 = Path("D:/dataset/MAIS_hackaton/food_images_251/val_set")
@@ -110,7 +105,6 @@ if __name__ == "__main__":
 
     for i in all_paths:
         resize_and_move_img(i, p_save)
-    # """
 
     all_paths = list(p_save.glob("*.jpg"))
     train_paths, test_paths = create_train_test(all_paths, 0.12)
