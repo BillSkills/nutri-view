@@ -1,5 +1,5 @@
-# nutri-view
+# NutriView
 
 A MAIS Hacks 2023 project
 
-Alex Zhang, William Zheng, Emile Petit, 
+Emile Petit, Olivier Lefevre, Alexander Zhang, William Zheng
