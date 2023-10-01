@@ -508,33 +508,37 @@
 
     <!-- RIGHT DETAILS PANE-->
     <aside
-      class="fixed top-0 right-0 z-40 w-96 h-screen pt-14 transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+      class="fixed top-0 right-0 z-40 w-96 h-screen pt-14 transition-transform -translate-x-full border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
       aria-label="Sidenav" id="drawer-navigation">
-      <p class="text-white">{{info[0]}}</p>
+      <p class="text-white">
+        {{selected_item}}
+      </p>
       <div class="overflow-y-auto py-5 px-3 h-full bg-white dark:bg-gray-800">
-
+        
       </div>
-
     </aside>
-
 
     <!-- Content -->
     <main class="p-4 md:mr-96 md:ml-64 h-full pt-20">
+      <form method="POST">
 
       <!-- Meal Button -->
-      <button class="h-44 w-full text-left mb-4">
+      {% for item in info %}
+      <button class="h-44 w-full text-left mb-4"name="button_clicked" value="{{ item[0] }}">
         <div class="border-2 border-solid rounded-lg border-blue-800 dark:border-gray-600 h-44 mb-4 p-4">
           <div class="grid grid-cols-3 gap-4 h-full">
             <div class="bg-red-500 overflow-hidden col-span-1 border-solid rounded-lg border-blue-800 dark:border-gray-600 h-full">
               <img id="imagePreview" src="" alt="Image Preview">
             </div>
             <div class=" col-span-2 border-solid rounded-lg border-blue-800 dark:border-gray-600 h-full mb-4">
-              <p class="text-white text-2xl">Placeholder Name<br>09/30/2023 04:37 PM</p>
-              <p class="text-white text-md">500 Cal</p>
+              <p class="text-white text-2xl">{{item[1]}}<br>{{item[2]}}</p>
+              <p class="text-white text-md">{{item[3]}}</p>
             </div>
           </div>
         </div>
       </button>
+      {% endfor %}
+      </form>
     </main>
   </div>
 
