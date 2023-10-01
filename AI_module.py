@@ -6,7 +6,7 @@ import torch
 import torchvision
 
 
-def test_loading_resnet(path):
+def load_resnet(path):
     model = torchvision.models.resnet18()
     model.load_state_dict(torch.load(path))
 
@@ -32,7 +32,7 @@ def prediction(model, img):
 
 
 if __name__ == "__main__":
-    m = test_loading_resnet("models_weights/test_resnet_18_256.pth")
+    m = load_resnet("models_weights/test_resnet_18_256.pth")
     image = Image.open("D:/dataset/MAIS_hackaton/food_images_251/all_images_256/test_000111.jpg")
 
     img_prep = prep_img(image)

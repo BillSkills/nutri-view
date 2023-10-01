@@ -29,22 +29,18 @@ def search_reviews(df, product_description, n=1, pprint=True):
     df["similarity"] = df["embedding"].apply(
         lambda x: cosine_similarity(x, np.array(product_embedding))
     )
-    #throws ufunc 'multiply' did not contain a loop with signature matching types dtype('<23') dtype('<23')
-    #df["similarity"] = df["embedding"].apply(
-    #    lambda x: np.dot(x, product_embedding)
-    #)
     results = (df.sort_values("similarity", ascending=False).head(n))
     return results
 
 def getindexofmaxofnparray(x):
     with open ("class_list.txt", "r") as myfile:
-        data = myfile.readlines()
+        class_list = myfile.readlines()
     
-    data = [i.split(" ")[1] for i in data]
+    class_list = [i.split(" ")[1] for i in class_list]
 
-    print(data)
+    print(class_list)
 
-    #return class_list[np.where(x == np.amax(x))[0][0]]
+    return class_list[np.where(x == np.amax(x))[0][0]]
 
 
 if __name__ == "__main__":
