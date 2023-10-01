@@ -35,17 +35,6 @@ test_data = datasets.ImageFolder(root=dataset_dir / "test",
                                  transform=transforms.ToTensor(),
                                  target_transform=None)
 
-"""
-plt.imshow(train_data[0][0].permute(1, 2, 0))
-plt.title(train_data.classes[train_data[0][1]])
-plt.show()
-"""
-
-print(train_data.classes)
-print(len(train_data))
-print(train_data[0])
-
-
 # --------------------------------------------------- Hyperparameter ---------------------------------------------------
 
 BATCH_SIZE = 64
@@ -54,8 +43,6 @@ input_shape = 3  # 28*28
 output_shape = len(train_data.classes)
 lr = 0.010  # learning rate the rate at witch the weights are modified
 device = "cuda" if torch.cuda.is_available() else "cpu"
-device = "cuda"
-
 
 # ----------------------------------------------- Setting the dataloader -----------------------------------------------
 
