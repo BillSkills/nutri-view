@@ -8,7 +8,6 @@ from torch.utils.data import DataLoader
 
 import matplotlib.pyplot as plt
 
-# Détermine si le gpu va être utilisé
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
 
@@ -26,7 +25,7 @@ def train_step(model: torch.nn.Module,
     :param optimizer: l'optimizer
     :param accuracy_fn: la fonction qui calcule l'accuracy
     :param device: cpu ou gpu en fonction de la disponibilité
-    :return: None
+    :return: train accuracy (float)
     """
 
     train_loss, train_acc = 0, 0
@@ -69,7 +68,7 @@ def test_step(model: torch.nn.Module,
     :param loss_fn: Fonction de loss
     :param accuracy_fn: La fonction qui calcule l'accuracy
     :param device: cpu ou gpu en fonction de la disponibilité
-    :return: None
+    :return: test accuracy (float)
     """
 
     test_loss, test_acc = 0, 0
