@@ -78,13 +78,18 @@
           <li>
             <a href="#"
               class="xflex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white group">
-              <form method="POST" action="/upload" enctype="multipart/form-data">
+              <!-- <form method="POST" action="/upload" enctype="multipart/form-data">
                 <input type="file" id="imageInput" name="image" accept="image/*" class="opacity-0 absolute w-0 h-0">
                 <label for="imageInput"
                   class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                   Upload Image
                 </label>
-              </form>
+              </form> -->
+
+              <form method="POST" action="/upload" enctype="multipart/form-data">
+                <input type="file" name="image" accept="image/*">
+                <button type="submit">Upload Image</button>
+            </form>
             </a>
           </li>
         </ul>

@@ -1,12 +1,19 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 import function_olivier as fo
 import pandas as pd
 import openai
+import os
+from pathlib import Path
+
 
 openai.api_key = "INSERT HERE"
 
 df = pd.read_csv('cleaned_data1.csv')
 app=Flask(__name__)
+
+UPLOAD_FOLDER = Path('static')
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 @app.route('/', methods=["GET","POST"])
 def index():
     #info=fo.search_reviews(df, "porridge", n=1, pprint=True)
@@ -18,6 +25,17 @@ def index():
         selected_item = info[int(button_clicked)]
         print(button_clicked)
         print(selected_item)
+
+    if 'image' not in request.files:
+        print("I hate you")
+    else:
+        image = request.files['image']
+        print(image)
+        if image:
+            filename = app.config['UPLOAD_FOLDER'] / image.filename
+            image.save(filename)
+            img_url=url_for('static', filename=f'uploads/{image.filename}')
+
     
     return render_template('index.html', info=info, selected_item=selected_item)
 
