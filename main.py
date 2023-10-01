@@ -6,10 +6,10 @@ import pandas as pd
 import openai
 import os
 from pathlib import Path
-import shutil
 from PIL import Image
+import time as time
 
-openai.api_key = "INSERT HERE"
+openai.api_key = "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"
 
 df = pd.read_csv('cleaned_data1.csv')
 app=Flask(__name__)
@@ -69,14 +69,21 @@ def upload():
 
             word = fo.getindexofmaxofnparray(pred)
             data = fo.search_reviews(df, word, n=1, pprint=True)
-            print(data)
-            [print(type(data))]
-            info.insert(0,[len(info),"grapes","saturday 12 2023",filename,1,2,3,4,5])
-            #img_url=url_for('static', filename=f'uploads/{image.filename}')
 
+            #img_url=url_for('static', filename=f'uploads/{image.filename}')
+            #turn pd dataframe row into list and add to new list
+            new_list = data.values.tolist()
+            new_list = new_list[0]
+            new_list.pop(len(new_list) - 1)
+            new_list.insert(0, len(info))
+            #append date to list in position 3 (index 2)
+            new_list.insert(2, time.strftime("%a %d %b %Y"))
+            #append filename to list in position 4 (index 3)
+            new_list.insert(3, filename)
+            # info.insert(0,[len(info),"grapes","saturday 12 2023",filename,1,2,3,4,5])
+            print(new_list)
+            info.append(new_list)
         return render_template('index.html', info=info, selected_item=info[button_clicked])
-    else:
-        return 'No image file uploaded'
     
 if __name__ == '__main__':
     app.run(debug=True)

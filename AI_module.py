@@ -6,9 +6,12 @@ import torch
 import torchvision
 
 
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+
 def load_resnet(path):
     model = torchvision.models.resnet18()
-    model.load_state_dict(torch.load(path))
+    model.to(device)
+    model.load_state_dict(torch.load(path, map_location=torch.device(device)))
 
     return model
 
